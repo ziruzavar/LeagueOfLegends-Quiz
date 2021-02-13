@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from Quiz.models import TextQuestion
+
+admin.site.register(TextQuestion)
