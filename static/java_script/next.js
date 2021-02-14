@@ -3,7 +3,8 @@ function script(questionsObjs) {
     let questionName = document.getElementById('name');
     let current = document.getElementById('current');
     let questions = document.getElementsByTagName('label');
-    document.getElementById('next').addEventListener('click', next);
+    let button = document.getElementById('next')
+    button.addEventListener('click', next);
     let inputs = document.getElementsByTagName('input');
     let curr = 0;
     let right = 0;
@@ -13,15 +14,24 @@ function script(questionsObjs) {
 
 
     function next() {
+
         let givenAnswer = document.querySelector('input:checked');
         if (givenAnswer.value === questionsObjs[curr].fields.answer) {
             right += 1;
         }
         givenAnswer.checked = false;
-        console.log(right);
 
         ///load the new Question;
         curr += 1;
+
+        if (curr === 19){
+            let a = document.createElement('a');
+            a.textContent = 'Finish';
+            a.classList.add('btn-success', 'btn');
+            button.parentNode.replaceChild(a, button);
+            a.href = `finish/?right=${right}`;
+        }
+
         current.textContent = `(${curr+1} of 20)`;
         populateLabels();
 

@@ -17,3 +17,12 @@ class QuizView(View):
 
 class IndexView(TemplateView):
     template_name = 'landing_page.html'
+
+
+class FinishView(View):
+    def get(self, request):
+        right = request.GET.get('right')
+        context = {
+            'right': right,
+        }
+        return render(request, 'finish_page.html', context)
