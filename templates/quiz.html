@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,28 +9,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </head>
-<body>
+<body onload="script({{ questions }})">
     <div class="container mt-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10 col-lg-10">
             <div class="border">
                 <div class="question bg-white p-3 border-bottom">
                     <div class="d-flex flex-row justify-content-between align-items-center mcq">
-                        <h4>League of Legends Quiz</h4><span>({{ current }} of 20)</span>
+                        <h4>League of Legends Quiz</h4><span id="current">(1 of 20)</span>
                     </div>
                 </div>
                 <div class="question bg-white p-3 border-bottom">
                     <div class="d-flex flex-row align-items-center question-title">
                         <h3 class="text-danger">Q.</h3>
-                        <h5 class="mt-1 ml-2">{{ questions.name }}</h5>
+                        <h5 id="name" class="mt-1 ml-2"></h5>
                     </div>
-                        <label><input  type="radio" name="question" >{{ questions.fi_choice }}</label><br>
-                        <label><input type="radio" name="question">{{ questions.se_choice }}</label><br>
-                        <label><input type="radio" name="question" >{{ questions.th_choice }}</label><br>
-                        <label><input type="radio" name="question" >{{ questions.fo_choice }}</label><br>
+                        <input type="radio" id='first' name="question">
+                        <label for="first"></label><br>
+                        <input type="radio" id='second' name="question">
+                        <label for="second"></label><br>
+                        <input type="radio" id='third' name="question">
+                        <label for="third"></label><br>
+                        <input type="radio" id='forth' name="question">
+                        <label for="forth"></label><br>
                 </div>
                 <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white">
-                    <button class="btn btn-primary border-success align-items-center btn-success" type="button">Next
+                    <button id='next' class="btn btn-primary border-success align-items-center btn-success" type="button">Next
                         <i class="fa fa-angle-right ml-2"></i>
                     </button>
                 </div>
@@ -38,4 +43,5 @@
     </div>
 </div>
 </body>
+<script src="{% static 'java_script/next.js' %}"></script>
 </html>
