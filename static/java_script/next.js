@@ -1,4 +1,7 @@
 function script(questionsObjs) {
+
+    console.log('outside the fn');
+
     let questionName = document.getElementById('name');
     let current = document.getElementById('current');
     let questions = document.getElementsByTagName('label');
@@ -18,7 +21,10 @@ function script(questionsObjs) {
         if (givenAnswer.value === questionsObjs[curr].fields.answer) {
             right += 1;
         }
+
         console.log(right);
+
+
         givenAnswer.checked = false;
 
         ///load the new Question;
@@ -33,6 +39,7 @@ function script(questionsObjs) {
             if (givenAnswer.value === questionsObjs[curr].fields.answer) {
             right += 1;
             }
+
             a.href = `finish/?right=${right}`;
         }
 
