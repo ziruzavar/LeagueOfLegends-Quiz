@@ -5,7 +5,7 @@ function script(questionsObjs) {
     let questionName = document.getElementById('name');
     let current = document.getElementById('current');
     let questions = document.getElementsByTagName('label');
-    let button = document.getElementById('next')
+    let button = document.getElementById('next');
     button.addEventListener('click', next);
     let inputs = document.getElementsByTagName('input');
     let curr = 0;
@@ -29,7 +29,7 @@ function script(questionsObjs) {
 
 
     function next() {
-
+        time = 21;
         let givenAnswer = document.querySelector('input:checked');
         if (givenAnswer == null){
             ///Do nothing
@@ -37,7 +37,6 @@ function script(questionsObjs) {
             if (givenAnswer.value === questionsObjs[curr].fields.answer) {
                 right += 1;
             }
-            time = 21;
             givenAnswer.checked = false;
         }
 

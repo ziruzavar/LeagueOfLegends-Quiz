@@ -9,11 +9,25 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
     <link rel="stylesheet" href="{% static 'css/header_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/finish_page.css' %}">
 </head>
 <body>
 {% include 'common/header.html' %}
 {%  block content %}
 {% endblock %}
-<p>You scored {{ right }} / 20</p>
+<h3 >Congratulations</h3>
+{% if right <= 10 %}
+    <h4 style="color: red">You scored {{ right }} / 20</h4>
+    <h4 style="color: darkred">Try harder next time!</h4>
+{% else %}
+    <h4 style="color: green">You scored {{ right }} / 20</h4>
+    <h4 style="color:slateblue; border-bottom: solid green;">You did a great job!</h4>
+{% endif %}
+<p>Name - Answer:</p>
+<ul>
+    {% for name,answer in questions.items %}
+        <li>{{ name }} - <span>{{ answer }}</span></li>
+    {% endfor %}
+</ul>
 </body>
 </html>

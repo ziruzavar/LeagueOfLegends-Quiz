@@ -22,7 +22,10 @@ class IndexView(TemplateView):
 class FinishView(View):
     def get(self, request):
         right = request.GET.get('right')
+
+        query_set = TextQuestion.objects.all()
         context = {
-            'right': right,
+            'right': int(right),
+            'questions': {d.name: d.answer for d in query_set},
         }
         return render(request, 'finish_page.html', context)
