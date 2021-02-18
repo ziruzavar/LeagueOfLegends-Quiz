@@ -11,40 +11,52 @@ function script(questionsObjs) {
     let curr = 0;
     let right = 0;
 
+    let time = 20;
+    let timeEl = document.getElementById('time');
     ///Load first Question
     populateLabels();
+
+    function decrementSeconds(){
+        time -= 1;
+        timeEl.textContent = `Time left: ${time} seconds`;
+        if (time === 0){
+            console.log('0 seconds');
+            time = 21;
+            next();
+        }
+    }
+    setInterval(decrementSeconds, 1000);
 
 
     function next() {
 
         let givenAnswer = document.querySelector('input:checked');
-        if (givenAnswer.value === questionsObjs[curr].fields.answer) {
-            right += 1;
+        if (givenAnswer == null){
+            ///Do nothing
+        }else {
+            if (givenAnswer.value === questionsObjs[curr].fields.answer) {
+                right += 1;
+            }
+            time = 21;
+            givenAnswer.checked = false;
         }
 
         console.log(right);
 
 
-        givenAnswer.checked = false;
-
         ///load the new Question;
         curr += 1;
-
-        if (curr === 19){
-            let a = document.createElement('a');
-            a.textContent = 'Finish';
-            a.classList.add('btn-success', 'btn');
-            button.parentNode.replaceChild(a, button);
-            let givenAnswer = document.querySelector('input:checked');
-            if (givenAnswer.value === questionsObjs[curr].fields.answer) {
-            right += 1;
-            }
-
-            a.href = `finish/?right=${right}`;
+        if (curr === 20){
+            window.location.replace(`finish/?right=${right}`);
+            return
         }
-
-        current.textContent = `(${curr+1} of 20)`;
-        populateLabels();
+            current.textContent = `(${curr + 1} of 20)`;
+            populateLabels();
+        if (curr === 19){
+            button.classList.add('btn-success');
+            button.classList.remove('btn-primary');
+            button.textContent = 'Finish'
+        }
 
     }
 

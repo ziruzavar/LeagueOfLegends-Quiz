@@ -1,0 +1,8 @@
+{
+  "name": "LOL_Quiz",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "lib": "^4.3.2"
+  }
+}
